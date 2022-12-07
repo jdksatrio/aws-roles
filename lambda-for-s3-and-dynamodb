@@ -1,0 +1,65 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Statement01",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:s3:::creditscoring-raw-data-sing/*",
+                "arn:aws:s3:::creditscoring-raw-data-sing",
+                "arn:aws:s3:::output-bucket-group1/*",
+                "arn:aws:s3:::output-bucket-group1",
+                "arn:aws:s3:::creditscoring-landing-sing/*",
+                "arn:aws:s3:::creditscoring-landing-sing"
+            ]
+        },
+        {
+            "Sid": "DynamoDBTableAccess",
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:PutItem",
+                "dynamodb:DescribeTable",
+                "dynamodb:DeleteItem",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:Query",
+                "dynamodb:UpdateItem"
+            ],
+            "Resource": [
+                "arn:aws:dynamodb:ap-southeast-1:868224632833:table/submission-file/*",
+                "arn:aws:dynamodb:ap-southeast-1:868224632833:table/submission-file"
+            ]
+        },
+        {
+            "Sid": "DynamoDBIndexAndStreamAccess",
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:GetShardIterator",
+                "dynamodb:Scan",
+                "dynamodb:Query",
+                "dynamodb:DescribeStream",
+                "dynamodb:GetRecords",
+                "dynamodb:ListStreams"
+            ],
+            "Resource": [
+                "arn:aws:dynamodb:ap-southeast-1:868224632833:table/submission-file/*",
+                "arn:aws:dynamodb:ap-southeast-1:868224632833:table/submission-file"
+            ]
+        },
+        {
+            "Sid": "DynamoDBDescribeLimitsAccess",
+            "Effect": "Allow",
+            "Action": "dynamodb:DescribeLimits",
+            "Resource": [
+                "arn:aws:dynamodb:ap-southeast-1:868224632833:table/submission-file",
+                "arn:aws:dynamodb:ap-southeast-1:868224632833:table/submission-file/*"
+            ]
+        }
+    ]
+}
